@@ -20,12 +20,15 @@ const users = require("./routes/users");
 //Passport config
 require("./routes/config/passport")(passport);
 
+//DB config
+const db = require("./config/database");
+
 //Map global promise - get ride of warning
 mongoose.Promise = global.Promise;
 
 //Connect to DB
 mongoose
-  .connect("mongodb://localhost/acme", {
+  .connect(db.mongoURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -99,7 +102,7 @@ app.get("/about", (req, res) => {
 app.use("/ideas", ideas);
 app.use("/users", users);
 
-const port = 5000;
+const port = process.env.port || 5000;
 
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);

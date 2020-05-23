@@ -4,7 +4,7 @@
   "description": "App to create ideas for yt videos",
   "main": "index.js",
   "scripts": {
-    "test": "start"
+    "start": "node app.js"
   },
   "author": "",
   "license": "ISC",
